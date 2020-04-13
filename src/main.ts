@@ -16,7 +16,12 @@ const { GOODREADS_LOGIN: login, GOODREADS_PASSWORD: password } = results.parsed;
   await goodreads.signin(login, password);
 
   const books = await goodreads.getMyBooks();
-  books.forEach(api.createBook);
+
+  // Loop in reverse order since list of books scraped from Goodreads is ordered (desc)
+  for (let i = books.length; i > 0; i--) {
+    const book = books[i - 1];
+    await api.createBook(book);
+  }
 
   await goodreads.close();
 })();
