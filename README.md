@@ -1,3 +1,5 @@
 # kindle-highlights-sync
 
-A NodeJS worker to sync Kindle book highlights from the Goodreads website to experimental API
+A NodeJS worker to sync Kindle book highlights (by scraping Goodreads website) into local [Kindle Highlights Api][1].
+
+[1]: https://github.com/hadynz/KindleHighlightsApi
