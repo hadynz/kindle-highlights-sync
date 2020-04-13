@@ -27,3 +27,6 @@ build/
 
 # Misc
 .DS_Store
+
+# Dotenv file with secrets
+.env
