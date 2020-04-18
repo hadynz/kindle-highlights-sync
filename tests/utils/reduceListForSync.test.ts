@@ -1,7 +1,7 @@
 import { Book as GoodreadsBook } from 'puppeteer-goodreads';
 
-import { Book } from '../../src/interfaces/Book';
-import reduceListForSync from '../../src/utils/reduceListForSync';
+import { Book } from '../../src/interface/Book';
+import reduceListForSync from '../../src/util/reduceListForSync';
 
 const getDefaults = (): GoodreadsBook => ({
   asin: '',

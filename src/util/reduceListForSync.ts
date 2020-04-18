@@ -1,6 +1,6 @@
 import { Book as GoodreadsBook } from 'puppeteer-goodreads';
 
-import { Book } from '../interfaces/Book';
+import { Book } from '../interface/Book';
 
 export default function reduceListForSync(
   books: Array<GoodreadsBook>,

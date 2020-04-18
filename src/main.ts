@@ -1,7 +1,7 @@
 import { PuppeteerGoodreads } from 'puppeteer-goodreads';
 
-import { KindleHighlightsApi } from './services/kindleHighlightsApi';
-import reduceListForSync from './utils/reduceListForSync';
+import { KindleHighlightsApi } from './repository/kindleHighlightsApi';
+import reduceListForSync from './util/reduceListForSync';
 
 // Read secure keys from .env
 const results = require('dotenv').config();

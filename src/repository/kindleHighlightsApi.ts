@@ -1,8 +1,8 @@
 import { Book as GoodreadsBook } from 'puppeteer-goodreads';
 import axios, { AxiosError } from 'axios';
 
-import { BookCreatedResponse } from '../interfaces/BookCreatedResponse';
-import { Book } from '../interfaces/Book';
+import { BookCreatedResponse } from '../interface/BookCreatedResponse';
+import { Book } from '../interface/Book';
 
 class KindleHighlightsApi {
   public async getBooks(): Promise<Array<Book>> {
