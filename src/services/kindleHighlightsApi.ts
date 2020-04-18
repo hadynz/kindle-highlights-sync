@@ -1,11 +1,11 @@
-import { Book } from 'puppeteer-goodreads';
+import { Book as GoodreadsBook } from 'puppeteer-goodreads';
 import axios, { AxiosError } from 'axios';
 
 import { BookCreatedResponse } from '../interfaces/BookCreatedResponse';
-import { Book as BookResponse } from '../interfaces/Book';
+import { Book } from '../interfaces/Book';
 
 class KindleHighlightsApi {
-  public async getBooks(): Promise<Array<BookResponse>> {
+  public async getBooks(): Promise<Array<Book>> {
     try {
       const { data } = await axios.get('http://localhost:5000/api/books');
       return data.map(
@@ -19,7 +19,7 @@ class KindleHighlightsApi {
             bookUrl: book.bookUrl,
             createdAt: book.createdAt,
             updatedAt: book.updatedAt,
-          } as BookResponse),
+          } as Book),
       );
     } catch (ex) {
       const error: AxiosError = ex;
@@ -28,7 +28,7 @@ class KindleHighlightsApi {
     }
   }
 
-  public async createBook(book: Book): Promise<BookCreatedResponse> {
+  public async createBook(book: GoodreadsBook): Promise<BookCreatedResponse> {
     try {
       const { data } = await axios.post(
         'http://localhost:5000/api/books',
