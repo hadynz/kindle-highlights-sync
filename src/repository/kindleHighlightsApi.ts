@@ -36,22 +36,31 @@ class KindleHighlightsApi {
   }
 
   public async createBook(book: GoodreadsBook): Promise<BookCreatedResponse> {
+    let response: BookCreatedResponse;
+
     try {
       const { data } = await axios.post(
         'http://localhost:5000/api/books',
         book,
       );
 
-      const response: BookCreatedResponse = {
+      response = {
         bookId: data.bookId,
       };
-
-      return response;
     } catch (ex) {
       const error: AxiosError = ex;
-      console.error(error);
-      throw error;
+
+      if (error.response.status === 409) {
+        response = {
+          bookId: error.response.data.bookId,
+        };
+      } else {
+        console.error(error);
+        throw error;
+      }
     }
+
+    return response;
   }
 
   public async createBookHighlights(
