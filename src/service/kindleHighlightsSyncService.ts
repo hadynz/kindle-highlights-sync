@@ -53,7 +53,6 @@ class KingleHighlightsSyncService {
     for (let i = booksToSync.length - 1; i >= 0; i--) {
       const book = booksToSync[i];
       await this.syncBook(book);
-      break;
     }
   }
 }
