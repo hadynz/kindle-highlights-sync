@@ -1,4 +1,5 @@
 import { PuppeteerGoodreads, Book as GoodreadsBook } from 'puppeteer-goodreads';
+import { Guid } from 'guid-typescript';
 
 import { KindleHighlightsApi } from '../repository/kindleHighlightsApi';
 import reduceListForSync from '../util/reduceListForSync';
@@ -14,9 +15,24 @@ class KingleHighlightsSyncService {
 
   public async syncBook(book: GoodreadsBook): Promise<void> {
     try {
-      await this._api.createBook(book);
+      const { bookId: createdBookId } = await this._api.createBook(book);
+      await this.syncBookHighlights(book, (createdBookId as unknown) as Guid);
     } catch (err) {
       console.error(`Couldn't sync book: ${book.title}. Error: ${err}`);
+    }
+  }
+
+  private async syncBookHighlights(
+    book: GoodreadsBook,
+    createdBookId: Guid,
+  ): Promise<void> {
+    try {
+      const highlights = await this._goodreadsScraper.getBookHighlights(book);
+      await this._api.createBookHighlights(createdBookId, highlights);
+    } catch (err) {
+      console.error(
+        `Couldn't sync book highlights: ${book.title}. Error: ${err}`,
+      );
     }
   }
 
@@ -37,6 +53,7 @@ class KingleHighlightsSyncService {
     for (let i = booksToSync.length - 1; i >= 0; i--) {
       const book = booksToSync[i];
       await this.syncBook(book);
+      break;
     }
   }
 }

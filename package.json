@@ -34,7 +34,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
-    "puppeteer-goodreads": "^1.0.3",
+    "guid-typescript": "^1.0.9",
+    "puppeteer-goodreads": "^1.0.4",
     "tslib": "~1.10.0"
   }
 }

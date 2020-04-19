@@ -14,7 +14,7 @@ const { GOODREADS_LOGIN: login, GOODREADS_PASSWORD: password } = results.parsed;
   await goodreadsScraper.signin(login, password);
 
   const syncService = new KingleHighlightsSyncService(goodreadsScraper);
-  syncService.sync();
+  await syncService.sync();
 
   await goodreadsScraper.close();
 })();
