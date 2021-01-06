@@ -32,7 +32,7 @@
   "author": "Hady Osman <hadyos@gmail.com>",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "guid-typescript": "^1.0.9",
     "puppeteer-goodreads": "^1.0.4",
